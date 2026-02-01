@@ -1,0 +1,238 @@
+/**
+ * Global Styles
+ * 
+ * Different design system with distinct visual identity:
+ * - Different color palette (teal/emerald instead of blue/purple)
+ * - Different spacing scale
+ * - Different typography
+ */
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Custom Design System - Emerald Theme */
+    --theme-primary: #059669;
+    --theme-primary-light: #10b981;
+    --theme-primary-dark: #047857;
+    --theme-accent: #f59e0b;
+    
+    /* Surface Colors */
+    --surface-base: #f8fafc;
+    --surface-elevated: #ffffff;
+    --surface-sunken: #f1f5f9;
+    
+    /* Text Colors */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    
+    /* Border and Dividers */
+    --border-default: #e2e8f0;
+    --border-subtle: #f1f5f9;
+    
+    /* Shadows - Softer approach */
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05);
+  }
+
+  /* Dark Mode Overrides */
+  .dark {
+    --surface-base: #0c1222;
+    --surface-elevated: #1a2332;
+    --surface-sunken: #0a0f1a;
+    
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --border-default: #1e293b;
+    --border-subtle: #1a2332;
+    
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.2);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.3);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--surface-base);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Primary Action Button */
+  .action-button {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 
+           rounded-lg font-medium transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .action-button--primary {
+    @apply bg-emerald-600 text-white hover:bg-emerald-700 
+           active:bg-emerald-800 focus:ring-emerald-500;
+  }
+
+  .action-button--secondary {
+    @apply bg-slate-100 text-slate-700 hover:bg-slate-200 
+           dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700;
+  }
+
+  .action-button--danger {
+    @apply bg-rose-600 text-white hover:bg-rose-700 focus:ring-rose-500;
+  }
+
+  /* Surface Card */
+  .surface-card {
+    @apply bg-white dark:bg-slate-800/90 
+           border border-slate-200/60 dark:border-slate-700/60
+           rounded-2xl shadow-sm;
+  }
+
+  /* Form Controls */
+  .form-input {
+    @apply w-full px-4 py-3 rounded-xl
+           bg-slate-50 dark:bg-slate-900/50
+           border border-slate-200 dark:border-slate-700
+           text-slate-900 dark:text-slate-100
+           placeholder-slate-400 dark:placeholder-slate-500
+           focus:outline-none focus:ring-2 focus:ring-emerald-500/50 
+           focus:border-emerald-500 transition-all;
+  }
+
+  .form-label {
+    @apply block text-sm font-semibold text-slate-600 dark:text-slate-400 mb-2;
+  }
+
+  /* Data Display */
+  .data-field {
+    @apply p-4 rounded-xl bg-slate-50 dark:bg-slate-900/30 
+           border border-slate-100 dark:border-slate-800;
+  }
+
+  .data-label {
+    @apply text-xs font-semibold uppercase tracking-wider 
+           text-slate-500 dark:text-slate-400 mb-1;
+  }
+
+  .data-value {
+    @apply text-base font-medium text-slate-900 dark:text-slate-100;
+  }
+
+  /* Status Indicators */
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 
+           rounded-full text-xs font-semibold;
+  }
+
+  .status-badge--active {
+    @apply bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400;
+  }
+
+  .status-badge--closed {
+    @apply bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400;
+  }
+
+  /* Table Styling */
+  .data-table {
+    @apply w-full text-left;
+  }
+
+  .data-table thead {
+    @apply bg-slate-50 dark:bg-slate-800/50 
+           border-b border-slate-200 dark:border-slate-700;
+  }
+
+  .data-table th {
+    @apply px-6 py-4 text-xs font-semibold uppercase tracking-wider
+           text-slate-500 dark:text-slate-400;
+  }
+
+  .data-table tbody tr {
+    @apply border-b border-slate-100 dark:border-slate-800
+           hover:bg-slate-50 dark:hover:bg-slate-800/30 
+           transition-colors cursor-pointer;
+  }
+
+  .data-table td {
+    @apply px-6 py-4 text-sm text-slate-600 dark:text-slate-300;
+  }
+
+  /* Metric Cards */
+  .metric-card {
+    @apply p-6 rounded-2xl bg-white dark:bg-slate-800/80
+           border border-slate-200/50 dark:border-slate-700/50
+           text-center transition-transform hover:scale-[1.02];
+  }
+
+  .metric-value {
+    @apply text-4xl font-bold bg-gradient-to-br 
+           from-emerald-500 to-teal-600 bg-clip-text text-transparent;
+  }
+
+  /* Navigation */
+  .nav-item {
+    @apply relative px-4 py-2 text-sm font-medium
+           text-slate-600 dark:text-slate-400
+           hover:text-emerald-600 dark:hover:text-emerald-400
+           transition-colors;
+  }
+
+  .nav-item--active {
+    @apply text-emerald-600 dark:text-emerald-400;
+  }
+
+  .nav-item--active::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-0.5 
+           bg-emerald-600 dark:bg-emerald-400 rounded-full;
+  }
+
+  /* Alert Messages */
+  .alert {
+    @apply p-4 rounded-xl flex items-start gap-3;
+  }
+
+  .alert--error {
+    @apply bg-rose-50 text-rose-700 dark:bg-rose-900/20 dark:text-rose-400
+           border border-rose-200 dark:border-rose-800;
+  }
+
+  .alert--success {
+    @apply bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400
+           border border-emerald-200 dark:border-emerald-800;
+  }
+
+  /* Empty State */
+  .empty-state {
+    @apply text-center py-16 px-8 rounded-2xl
+           bg-slate-50 dark:bg-slate-800/30
+           border-2 border-dashed border-slate-200 dark:border-slate-700;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-500;
+}
